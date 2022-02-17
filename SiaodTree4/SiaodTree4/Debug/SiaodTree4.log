@@ -1,0 +1,8 @@
+﻿  SiaodTree4.cpp
+C:\Users\timof\Desktop\Проекты\SiaodTree4\SiaodTree4\SiaodTree4.cpp(217,60): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+C:\Users\timof\Desktop\Проекты\SiaodTree4\SiaodTree4\SiaodTree4.cpp(224,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\timof\Desktop\Проекты\SiaodTree4\SiaodTree4\SiaodTree4.cpp(262,21): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\timof\Desktop\Проекты\SiaodTree4\SiaodTree4\SiaodTree4.cpp(263,21): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\timof\Desktop\Проекты\SiaodTree4\SiaodTree4\SiaodTree4.cpp(148): warning C4715: AddVertex2: значение возвращается не при всех путях выполнения
+C:\Users\timof\Desktop\Проекты\SiaodTree4\SiaodTree4\SiaodTree4.cpp(171): warning C4715: AddVertex1: значение возвращается не при всех путях выполнения
+  SiaodTree4.vcxproj -> C:\Users\timof\Desktop\Проекты\SiaodTree4\Debug\SiaodTree4.exe
