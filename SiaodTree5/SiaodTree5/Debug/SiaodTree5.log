@@ -1,0 +1,4 @@
+﻿  SiaodTree5.cpp
+C:\Users\timof\Desktop\Проекты\SiaodTree5\SiaodTree5\SiaodTree5.cpp(260,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\timof\Desktop\Проекты\SiaodTree5\SiaodTree5\SiaodTree5.cpp(201): warning C4715: AddVertex: значение возвращается не при всех путях выполнения
+  SiaodTree5.vcxproj -> C:\Users\timof\Desktop\Проекты\SiaodTree5\Debug\SiaodTree5.exe
