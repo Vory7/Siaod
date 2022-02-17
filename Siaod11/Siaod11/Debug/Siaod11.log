@@ -1,0 +1,4 @@
+﻿  Siaod11.cpp
+C:\Users\timof\Desktop\Проекты\Siaod11\Siaod11\Siaod11.cpp(142,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\timof\Desktop\Проекты\Siaod11\Siaod11\Siaod11.cpp(100): warning C4715: List<int>::operator[]: значение возвращается не при всех путях выполнения
+  Siaod11.vcxproj -> C:\Users\timof\Desktop\Проекты\Siaod11\Debug\Siaod11.exe

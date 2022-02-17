@@ -1,0 +1,7 @@
+﻿  Siaod10.cpp
+C:\Users\timof\Desktop\Проекты\Siaod10\Siaod10\Siaod10.cpp(23,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\timof\Desktop\Проекты\Siaod10\Siaod10\Siaod10.cpp(63,34): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\timof\Desktop\Проекты\Siaod10\Siaod10\Siaod10.cpp(64,10): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\timof\Desktop\Проекты\Siaod10\Siaod10\Siaod10.cpp(55,6): warning C4101: M: неиспользованная локальная переменная
+C:\Users\timof\Desktop\Проекты\Siaod10\Siaod10\Siaod10.cpp(55,9): warning C4101: C: неиспользованная локальная переменная
+  Siaod10.vcxproj -> C:\Users\timof\Desktop\Проекты\Siaod10\Debug\Siaod10.exe

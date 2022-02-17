@@ -1,0 +1,8 @@
+﻿  Siaod9.cpp
+C:\Users\timof\Desktop\Сиаод\Siaod9\Siaod9\Siaod9.cpp(7,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\timof\Desktop\Сиаод\Siaod9\Siaod9\Siaod9.cpp(32,9): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\timof\Desktop\Сиаод\Siaod9\Siaod9\Siaod9.cpp(74,6): warning C4101: M: неиспользованная локальная переменная
+C:\Users\timof\Desktop\Сиаод\Siaod9\Siaod9\Siaod9.cpp(75,12): warning C4101: Mt: неиспользованная локальная переменная
+C:\Users\timof\Desktop\Сиаод\Siaod9\Siaod9\Siaod9.cpp(75,8): warning C4101: Ct: неиспользованная локальная переменная
+C:\Users\timof\Desktop\Сиаод\Siaod9\Siaod9\Siaod9.cpp(74,9): warning C4101: C: неиспользованная локальная переменная
+  Siaod9.vcxproj -> C:\Users\timof\Desktop\Сиаод\Siaod9\Debug\Siaod9.exe
