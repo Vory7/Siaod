@@ -1,0 +1,5 @@
+﻿  Siaod5.cpp
+C:\Users\timof\Desktop\Проекты\Siaod5\Siaod5\Siaod5.cpp(7,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\timof\Desktop\Проекты\Siaod5\Siaod5\Siaod5.cpp(104,6): warning C4101: M: неиспользованная локальная переменная
+C:\Users\timof\Desktop\Проекты\Siaod5\Siaod5\Siaod5.cpp(104,9): warning C4101: C: неиспользованная локальная переменная
+  Siaod5.vcxproj -> C:\Users\timof\Desktop\Проекты\Siaod5\Debug\Siaod5.exe

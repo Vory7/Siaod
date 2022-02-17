@@ -1,0 +1,6 @@
+﻿  Source.cpp
+C:\Users\timof\Desktop\Проекты\Siaod3\Siaod3\Source.cpp(7,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\timof\Desktop\Проекты\Siaod3\Siaod3\Source.cpp(73,10): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+C:\Users\timof\Desktop\Проекты\Siaod3\Siaod3\Source.cpp(62,6): warning C4101: M: неиспользованная локальная переменная
+C:\Users\timof\Desktop\Проекты\Siaod3\Siaod3\Source.cpp(62,9): warning C4101: C: неиспользованная локальная переменная
+  Siaod3.vcxproj -> C:\Users\timof\Desktop\Проекты\Siaod3\Debug\Siaod3.exe
