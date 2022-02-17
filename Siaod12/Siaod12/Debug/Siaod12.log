@@ -1,0 +1,8 @@
+﻿  Siaod12.cpp
+C:\Users\timof\Desktop\Проекты\Siaod12\Siaod12\Siaod12.cpp(115,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\timof\Desktop\Проекты\Siaod12\Siaod12\Siaod12.cpp(170,20): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\timof\Desktop\Проекты\Siaod12\Siaod12\Siaod12.cpp(171,16): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+C:\Users\timof\Desktop\Проекты\Siaod12\Siaod12\Siaod12.cpp(162,9): warning C4101: M: неиспользованная локальная переменная
+C:\Users\timof\Desktop\Проекты\Siaod12\Siaod12\Siaod12.cpp(162,12): warning C4101: C: неиспользованная локальная переменная
+C:\Users\timof\Desktop\Проекты\Siaod12\Siaod12\Siaod12.cpp(98): warning C4715: List<int>::operator[]: значение возвращается не при всех путях выполнения
+  Siaod12.vcxproj -> C:\Users\timof\Desktop\Проекты\Siaod12\Debug\Siaod12.exe

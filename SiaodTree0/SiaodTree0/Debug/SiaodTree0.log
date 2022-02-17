@@ -1,0 +1,3 @@
+﻿  SiaodTree0.cpp
+C:\Users\timof\Desktop\Проекты\SiaodTree0\SiaodTree0\SiaodTree0.cpp(29,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  SiaodTree0.vcxproj -> C:\Users\timof\Desktop\Проекты\SiaodTree0\Debug\SiaodTree0.exe
