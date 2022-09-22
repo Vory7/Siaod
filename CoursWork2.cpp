@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <cstdlib>
 #include <cstdio>
 #include <string.h>
@@ -70,6 +70,7 @@ public:
     void Delete() {
         if (root != NULL)
             root->Delete();
+        root = NULL;
     }
 
     void insert(record* k);
@@ -80,7 +81,13 @@ TreeNode::TreeNode(int t1, bool leaf1) {
     leaf = leaf1;
 
     keys = new record*[2 * t - 1];
+    for (int i = 0; i < 2 * t - 1; ++i) {
+        keys[i] = NULL;
+    }
     C = new TreeNode * [2 * t];
+    for (int i = 0; i < 2 * t; ++i) {
+        C[i] = NULL;
+    }
 
     n = 0;
 }
@@ -95,6 +102,7 @@ void TreeNode::traverse() {
             << setw(20) << keys[i]->Pub
             << setw(8) << keys[i]->Year
             << setw(8) << keys[i]->Pages
+            << setw(10) << "leaf = " << leaf
             << endl;
     }
 
@@ -103,39 +111,54 @@ void TreeNode::traverse() {
 }
 
 void TreeNode::Delete() {
-    int i;
-    for (i = 0; i < n; i++) {
+    for (int i = 0; i < 2 * t; i++) {
         if (leaf == false)
-            C[i]->traverse();
+            C[i]->Delete();
     }
 
+    for (int i = 0; i < 2 * t - 1; i++) {
+        delete keys[i];
+    }
     delete[] keys;
 
     if (leaf == false)
-        C[i]->traverse();
+        C[2 * t]->Delete();
 
     delete[] C;
-
 }
 
 TreeNode* TreeNode::search(int k) {
     int i = 0;
-    while (i < n && k > keys[i]->Year)
-        i++;
+    if (keys[i] != NULL) {
+        while (i < n && k > keys[i]->Year) {
+            i++;
+            if (keys[i] == NULL) {
+                --i;
+                break;
+            }
+        }
+    }
 
-    //if (keys[i] != NULL)
-        if (keys[i]->Year == k)
+    if (keys[i] != NULL) {
+        while (keys[i]->Year == k) {
+            if (C[i] != NULL)
+                C[i]->search(k);
             cout << "[" << ++num << "]" << setw(12) << keys[i]->Author
-            << setw(36) << keys[i]->Title
-            << setw(20) << keys[i]->Pub
-            << setw(8) << keys[i]->Year
-            << setw(8) << keys[i]->Pages
-            << endl;
+                << setw(36) << keys[i]->Title
+                << setw(20) << keys[i]->Pub
+                << setw(8) << keys[i]->Year
+                << setw(8) << keys[i]->Pages
+                << endl;
+            ++i;
+            if (keys[i] == NULL) break;
+        }
+        if (keys[i] != NULL) 
+            if (keys[i]->Year > k) i--;
+    }
 
     if (leaf == true)
         return NULL;
-
-    return C[i]->search(k);
+    else if (C[i] != NULL) return C[i]->search(k);
 }
 
 void BTree::insert(record* k) {
@@ -214,8 +237,7 @@ void TreeNode::splitChild(int i, TreeNode* y) {
     n = n + 1;
 }
 
-int cnt = 0;
-int Rost;
+record* Load(Node* pointers, int* check_load);
 void HeapSort(Node* arr);
 void heapify(Node* arr, int n, int i);
 int ForHeapSort(Node* arr, int a, int b);
@@ -224,9 +246,9 @@ int FindByKey(Node* arr, int* indexl, int* indexr);
 int Reading_Symbols();
 void Fill_Chance_Meet_of_Symbols(char symbol, double** array_chance, int symbol_alphabet);
 void CodingSymbols(double** array_chance, int symbol_alphabet);
-void Huffman(int symbol_alphabet, double* probability, bool** code_word, double* length);
+void Huffman(int symbol_alphabet, double* probability, bool** code_word, int* length);
 void QuickSortForChance(double** array_chance, int left_limit, int right_limit);
-void Down(int symbol_alphabet, int j, double* length, bool** code_word);
+void Down(int symbol_alphabet, int j, int* length, bool** code_word);
 int Up(int symbol_alphabet, double q, double* probability);
 
 struct List {
@@ -241,6 +263,11 @@ public:
     Queue() {
         head = NULL;
         tail = NULL;
+    }
+
+    ~Queue() {
+        delete head;
+        delete tail;
     }
 
     void push(record& rec) {
@@ -268,38 +295,41 @@ public:
             ++i;
         }
     }
+
+    void Delete() {
+        List* p = head, *p1;
+        while (p != NULL) {
+            p1 = p;
+            p = p->next;
+            delete p1;
+        }
+        head = NULL;
+        tail = NULL;
+    }
 };
 
 int main() {
-    FILE* fp;
-    fopen_s(&fp, "testBase1.dat", "rb");
-    record* records;
+    record* records = NULL;
     Node* pointers = new Node[N];
     Queue q;
     BTree tree(2);
-    int choice;
-
-    if (fp == NULL) {
-        cout << "PROBLEM" << endl;
-        system("pause");
-        return -1;
-    }
-
-    records = new record[N];
-    fread((record*)records, sizeof(record), N, fp);
-    fclose(fp);
-
-    for (int i = 0; i < N; ++i) pointers[i].r = &records[i];
+    int choice, check_load = 0;
+    
+    records = Load(pointers, &check_load);
+    if (check_load == -1) return -1;
+    
     HeapSort(pointers);
 
-    while (true) {
-        system("cls");
+    int exit_flag = 1, clear_flag = 0;
+    while (exit_flag) {
         cout << "[1]Show unsorted data" 
             << endl << "[2]Show sorted data" 
             << endl << "[3]Find by last name of a wonderful person" 
             << endl << "[4]Build the tree"
             << endl << "[5]Search in tree by year"
             << endl << "[6]Encode Data Base by Huffman"
+            << endl << "[7]Clear screen"
+            << endl << "[8]Exit"
             << endl;
         cout << "The choice is yours: ";
 
@@ -308,11 +338,9 @@ int main() {
         switch (choice) {
         case 1:
         {
-            system("cls");
             int i = 0, j = 0;
-
             while (i < N) {
-                if (j == 20) {
+                if (j == 25) {
                     cout << "========================================================================"
                         << endl << "Print more? (0 - NO, 1 - YES): ";
                     cin >> choice;
@@ -332,10 +360,9 @@ int main() {
         } break;
         case 2:
         {
-            system("cls");
             int i = 0, j = 0;
             while (i < N) {
-                if (j == 20) {
+                if (j == 25) {
                     cout << "========================================================================" 
                         << endl << "Print more? (0 - NO, 1 - YES): ";
                     cin >> choice;
@@ -357,6 +384,7 @@ int main() {
         {
             int indexl = 0, indexr = 0;
             if (FindByKey(pointers, &indexl, &indexr)) {
+                if (q.head != NULL) q.Delete();
                 for (int i = indexl; i <= indexr; ++i) q.push(*pointers[i].r);
                 q.printQueue();
             }
@@ -371,6 +399,7 @@ int main() {
             }
             else {
                 List* p = q.head;
+                if (tree.real()) tree.Delete();
                 while (p != NULL) {
                     tree.insert(&p->r);
                     p = p->next;
@@ -395,13 +424,45 @@ int main() {
         {
             Reading_Symbols();
         } break;
+        case 7:
+        {
+            clear_flag = 1;;
+        } break;
+        case 8:
+        {
+            exit_flag = 0;
+            q.Delete();
+        } break;
         }
         system("PAUSE");
-        std::cout << '\n';
+        cout << endl;
+        if (clear_flag) {
+            system("cls");
+            clear_flag = 0;
+        }
+    }
+    
+    delete[] pointers;
+    delete[] records;
+    return EXIT_SUCCESS;
+}
+
+record* Load(Node* pointers, int *check_load) {
+    FILE* fp;
+    fopen_s(&fp, "testBase1.dat", "rb");
+    if (fp == NULL) {
+        cout << "PROBLEM" << endl;
+        system("pause");
+        *check_load = -1;
+        return NULL;
     }
 
-    system("PAUSE");
-    return EXIT_SUCCESS;
+    record* records = new record[N];
+    fread((record*)records, sizeof(record), N, fp);
+    fclose(fp);
+
+    for (int i = 0; i < N; ++i) pointers[i].r = &records[i];
+    return records;
 }
 
 int FindCheck(Node node, char* K) {
@@ -600,7 +661,7 @@ void CodingSymbols(double** array_chance, int symbol_alphabet)
 {
     double average_code_length = 0.0;
     double *probability = new double[symbol_alphabet + 1];
-    double *length = new double[symbol_alphabet + 1];
+    int *length = new int[symbol_alphabet + 1];
     bool **code_word = new bool*[symbol_alphabet + 1];
     for (int i = 0; i < symbol_alphabet + 1; i++)
     {
@@ -632,14 +693,22 @@ void CodingSymbols(double** array_chance, int symbol_alphabet)
         printf("%hu)%c\t%f\t\t", i, (char)array_chance[i - 1][0], array_chance[i - 1][1]);
         for (int j = 0; j < length[i]; j++)
         {
-            printf("%d", code_word[i][j]);
+            cout << code_word[i][j];
         }
-        cout << "\t\t" << length[i] << endl;
+        cout << "       " << length[i] << endl;
     }
     cout << "Average length of code words : " << average_code_length << endl;
+
+    delete[] probability;
+    delete[] length;
+    for (int i = 0; i < symbol_alphabet + 1; i++)
+    {
+        delete[] code_word[i];
+    }
+    delete[] code_word;
 }
 
-void Huffman(int symbol_alphabet, double *probability, bool **code_word, double *length)
+void Huffman(int symbol_alphabet, double *probability, bool **code_word, int *length)
 {
     if (symbol_alphabet == 2)
     {
@@ -695,7 +764,7 @@ void QuickSortForChance(double** array_chance, int left, int right)
     return;
 }
 
-void Down(int symbol_alphabet, int j, double *length, bool **code_word)
+void Down(int symbol_alphabet, int j, int *length, bool **code_word)
 {
     bool S[20] = { 0 };
     for (int i = 0; i < 20; i++)
